@@ -1,4 +1,4 @@
-package com.wangnan.flight.service;
+package com.wangnan.cxf.flight;
 
 import java.util.Date;
 
@@ -6,8 +6,8 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
-import com.wangnan.flight.service.exception.FlightException;
-import com.wangnan.flight.service.model.FlightData;
+import com.wangnan.cxf.flight.exception.FlightException;
+import com.wangnan.cxf.flight.model.FlightData;
 
 @WebService
 public interface FlightSvc {

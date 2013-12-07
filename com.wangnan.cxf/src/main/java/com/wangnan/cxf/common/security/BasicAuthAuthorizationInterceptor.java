@@ -1,4 +1,4 @@
-package com.wangnan.flight.service.sercurity;
+package com.wangnan.cxf.common.security;
 
 import java.io.IOException;
 import java.io.OutputStream;

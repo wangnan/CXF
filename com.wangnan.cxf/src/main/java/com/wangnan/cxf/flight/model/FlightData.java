@@ -1,4 +1,4 @@
-package com.wangnan.flight.service.model;
+package com.wangnan.cxf.flight.model;
 
 import java.util.Date;
 

@@ -1,0 +1,54 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans.xsd 
+http://cxf.apache.org/jaxws 
+http://cxf.apache.org/schemas/jaxws.xsd">
+
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+	<!-- auth 1 -->
+	<!-- <bean id="serverPasswordCallback" class="com.wangnan.flight.service.sercurity.ServerPasswordCallback"></bean> 
+		<bean id="serverWSS4JInInterceptor" class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor"> 
+		<constructor-arg> <map> <entry key="action" value="UsernameToken" /> <entry 
+		key="passwordType" value="PasswordDigest" /> <entry key="passwordCallbackRef"> 
+		<ref bean="serverPasswordCallback" /> </entry> </map> </constructor-arg> 
+		</bean> <jaxws:endpoint id="flight" implementor="com.wangnan.cxf.service.FlightImpl" 
+		address="/flightSvc"> <jaxws:inInterceptors> <bean class="org.apache.cxf.interceptor.LoggingInInterceptor" 
+		/> <ref bean="serverWSS4JInInterceptor" /> </jaxws:inInterceptors> <jaxws:outInterceptors> 
+		<bean class="org.apache.cxf.interceptor.LoggingOutInterceptor" /> </jaxws:outInterceptors> 
+		<jaxws:properties> <entry key="mtom-enabled" value="true" /> </jaxws:properties> 
+		</jaxws:endpoint> -->
+	<!-- end of Auth 1 -->
+
+	<!-- Auth 2 -->
+	<!-- <bean id="securityInterceptor" class="com.wangnan.flight.service.sercurity.BasicAuthAuthorizationInterceptor"> 
+		<property name="users"> <map> <entry key="username" value="password" /> </map> 
+		</property> </bean> <jaxws:endpoint id="data" implementor="com.ssb.service.DataServiceImpl" 
+		address="/dataService"> <jaxws:inInterceptors> <ref bean="securityInterceptor" 
+		/> </jaxws:inInterceptors> </jaxws:endpoint> -->
+	<!-- end of Auth 2 -->
+
+
+	<!-- Flight Service -->
+	<bean id="securityInterceptor"
+		class="com.wangnan.cxf.flight.security.AuthAuthorizationInterceptor">
+		<property name="users">
+			<map>
+				<entry key="username" value="password" />
+			</map>
+		</property>
+	</bean>
+
+	<jaxws:endpoint id="flightSvc" implementor="com.wangnan.cxf.flight.FlightImpl"
+		address="/flightSvc">
+		<jaxws:inInterceptors>
+			<bean class="org.apache.cxf.interceptor.LoggingInInterceptor" />
+			<ref bean="securityInterceptor" />
+		</jaxws:inInterceptors>
+
+	</jaxws:endpoint>
+	<!-- end of Flight Service -->
+	
+</beans>

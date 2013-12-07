@@ -1,14 +1,14 @@
-package com.wangnan.flight.service;
+package com.wangnan.cxf.flight;
 
 import java.util.Calendar;
 import java.util.Date;
 
 import javax.jws.WebService;
 
-import com.wangnan.flight.service.exception.FlightException;
-import com.wangnan.flight.service.model.FlightData;
+import com.wangnan.cxf.flight.exception.FlightException;
+import com.wangnan.cxf.flight.model.FlightData;
 
-@WebService(endpointInterface = "com.wangnan.flight.service.FlightSvc", serviceName = "flightSvc")
+@WebService(endpointInterface = "com.wangnan.cxf.flight.FlightSvc", serviceName = "flightSvc")
 public class FlightImpl implements FlightSvc {
 
 	@Override
